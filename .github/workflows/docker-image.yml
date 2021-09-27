@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ parent-image-update ]
+  pull_request:
+    branches: [ parent-image-update ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag smo-ddemerre/cvsweb-docker:$(date +%Y%m%d)
+
