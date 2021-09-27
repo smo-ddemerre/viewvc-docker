@@ -1,7 +1,9 @@
-FROM debian:stretch-slim
+FROM debian:stable-20210902-slim
 
-LABEL Maintainer="Craig Manley https://github.com/cmanley" \
-      Description="ViewVC 1.1.26-1 (CVS & SVN repository viewer) based on nginx and Debian stretch-slim"
+ENV DEBIAN_BASE_IMG_DATE=20210902
+
+LABEL Maintainer="Craig Manley https://github.com/cmanley (cmanley/viewvc-docker)"
+LABEL Description="ViewVC 1.1.26-1 (CVS & SVN repository viewer) via nginx, fcgiwrap, on Debian stable-${DEBIAN_BASE_IMG_DATE}-slim."
 
 RUN echo 'path-include /usr/share/doc/viewvc/examples/templates-contrib/newvc/*' >> /etc/dpkg/dpkg.cfg.d/docker \
 	&& apt-get update && apt-get install -y \
